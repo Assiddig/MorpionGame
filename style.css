@@ -55,3 +55,12 @@ body {
     background-color: #0056b3;
   }
   
+  #scores {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  

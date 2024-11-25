@@ -1,9 +1,14 @@
-const cells = document.querySelectorAll('.cells');
+const cells = document.querySelectorAll('.cell');
 const statusText = document.getElementById('status');
-const resetButton = document.getElementById('resets');
+const resetButton = document.getElementById('reset');
+const scoreXText = document.getElementById('scoreX');
+const scoreOText = document.getElementById('scoreO');
+
 let currentPlayer = 'X';
 let board = ['', '', '', '', '', '', '', '', ''];
 let gameActive = true;
+let scoreX = 0;
+let scoreO = 0;
 
 const winningCombinations = [
   [0, 1, 2],
@@ -22,6 +27,15 @@ function checkWinner() {
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
       gameActive = false;
       statusText.textContent = `Le joueur ${currentPlayer} a gagné !`;
+      
+      // Mise à jour du score
+      if (currentPlayer === 'X') {
+        scoreX++;
+        scoreXText.textContent = scoreX;
+      } else {
+        scoreO++;
+        scoreOText.textContent = scoreO;
+      }
       return;
     }
   }
@@ -51,8 +65,8 @@ function handleCellClick(event) {
 
 function resetGame() {
   board = ['', '', '', '', '', '', '', '', ''];
-  currentPlayer = 'X';
   gameActive = true;
+  currentPlayer = 'X';
   statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
   cells.forEach(cell => {
     cell.textContent = '';
