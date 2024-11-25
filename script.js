@@ -3,7 +3,7 @@ const statusText = document.getElementById('status');
 const resetButton = document.getElementById('resets');
 const scoreXText = document.getElementById('scoreX');
 const scoreOText = document.getElementById('scoreO');
-const gameContainer = document.getElementById('game');
+const gameContainer = document.getElementById('games');
 
 let currentPlayer = 'X';
 let board = ['', '', '', '', '', '', '', '', ''];
