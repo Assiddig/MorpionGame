@@ -64,3 +64,15 @@ body {
     gap: 20px;
   }
   
+  .cell.winner {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .line {
+    position: absolute;
+    background-color: red;
+    height: 5px;
+    transform-origin: center;
+  }
+  

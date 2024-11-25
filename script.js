@@ -1,8 +1,9 @@
-const cells = document.querySelectorAll('.cell');
+const cells = document.querySelectorAll('.cells');
 const statusText = document.getElementById('status');
-const resetButton = document.getElementById('reset');
+const resetButton = document.getElementById('resets');
 const scoreXText = document.getElementById('scoreX');
 const scoreOText = document.getElementById('scoreO');
+const gameContainer = document.getElementById('game');
 
 let currentPlayer = 'X';
 let board = ['', '', '', '', '', '', '', '', ''];
@@ -11,15 +12,16 @@ let scoreX = 0;
 let scoreO = 0;
 
 const winningCombinations = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
+  [0, 1, 2], 
+  [3, 4, 5], 
+  [6, 7, 8], 
+  [0, 3, 6], 
+  [1, 4, 7], 
+  [2, 5, 8], 
+  [0, 4, 8], 
+  [2, 4, 6], 
 ];
+
 
 function checkWinner() {
   for (const combo of winningCombinations) {
@@ -27,8 +29,13 @@ function checkWinner() {
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
       gameActive = false;
       statusText.textContent = `Le joueur ${currentPlayer} a gagné !`;
-      
-      // Mise à jour du score
+
+      cells[a].classList.add('winner');
+      cells[b].classList.add('winner');
+      cells[c].classList.add('winner');
+
+      drawWinningLine(combo);
+
       if (currentPlayer === 'X') {
         scoreX++;
         scoreXText.textContent = scoreX;
@@ -68,10 +75,14 @@ function resetGame() {
   gameActive = true;
   currentPlayer = 'X';
   statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
+
   cells.forEach(cell => {
     cell.textContent = '';
-    cell.classList.remove('taken');
+    cell.classList.remove('taken', 'winner');
   });
+
+  const lines = document.querySelectorAll('.line');
+  lines.forEach(line => line.remove());
 }
 
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
