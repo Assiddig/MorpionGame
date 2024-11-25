@@ -34,8 +34,6 @@ function checkWinner() {
       cells[b].classList.add('winner');
       cells[c].classList.add('winner');
 
-      drawWinningLine(combo);
-
       if (currentPlayer === 'X') {
         scoreX++;
         scoreXText.textContent = scoreX;
@@ -46,6 +44,7 @@ function checkWinner() {
       return;
     }
   }
+
   if (!board.includes('')) {
     gameActive = false;
     statusText.textContent = "Match nul !";
