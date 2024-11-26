@@ -4,6 +4,9 @@ const statusText = document.getElementById('status');
 const resetButton = document.getElementById('reset');
 const scoreXText = document.getElementById('scoreX');
 const scoreOText = document.getElementById('scoreO');
+const symbolChoice = document.getElementById('symbol-choice');
+const xSymbolButton = document.getElementById('x-symbol');
+const oSymbolButton = document.getElementById('o-symbol');
 
 // ==== Variables globales ====
 let currentPlayer = 'X';
@@ -46,6 +49,32 @@ function checkWinner() {
     statusText.textContent = "Match nul !";
   }
 }
+
+// ==== Choix du symbole initial ====
+function chooseSymbol() {
+  // Quand le joueur choisit "X"
+  xSymbolButton.addEventListener('click', () => {
+    currentPlayer = 'X';
+    startGame();
+  });
+
+  // Quand le joueur choisit "O"
+  oSymbolButton.addEventListener('click', () => {
+    currentPlayer = 'O';
+    startGame();
+  });
+}
+
+/**
+ * Fonction pour démarrer le jeu après le choix du symbole
+ */
+function startGame() {
+  symbolChoice.style.display = 'none'; // Cache les boutons de choix
+  statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
+}
+
+// ==== Initialisation ====
+chooseSymbol();
 
 /**
  * Gère le clic sur une cellule
