@@ -14,8 +14,6 @@ let board = ['', '', '', '', '', '', '', '', ''];
 let gameActive = true;
 let scoreX = 0;
 let scoreO = 0;
-let moveCount = 0;
-let lastMoveIndex = null;
 
 const winningCombinations = [
   [0, 1, 2],
@@ -43,15 +41,6 @@ function checkWinner() {
       // Mise à jour du score
       updateScore();
       highlightWinningCells(combo);
-      statusText.textContent = `Le joueur ${currentPlayer === 'X' ? 'O' : 'X'} a gagné !`;
-      // Mise à jour du score
-      if (currentPlayer === 'X') {
-        scoreX++;
-        scoreXText.textContent = scoreX;
-      } else {
-        scoreO++;
-        scoreOText.textContent = scoreO;
-      }
       return;
     }
   }
@@ -98,23 +87,6 @@ function handleCellClick(event) {
 
   board[index] = currentPlayer;
   cell.textContent = currentPlayer;
-  if(moveCount >=4 && lastMoveIndex !== null) {
-
-    board[lastMoveIndex] = '';
-    cells[lastMoveIndex].textContent = '';
-    cells[lastMoveIndex].classList.remove('taken');
-
-    moveCount--;
-    return;
-  }
-
-  board[index] = currentPlayer;
-  cell.textContent = currentPlayer;
-  cell.classList.add('taken');
-
-  lastMoveIndex = index
-
-  moveCount++;
 
   checkWinner();
 
@@ -165,13 +137,4 @@ cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 resetButton.addEventListener('click', resetGame);
 
 // ==== Initialisation ====
-statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
-
-function showImage() {
-  imageContainer.style.display = 'block';
-}
-
-cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-resetButton.addEventListener('click', showImage);
-
 statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
