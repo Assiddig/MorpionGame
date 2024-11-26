@@ -3,12 +3,32 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+<<<<<<< HEAD
     background-color: #f4f4f4;
+=======
+    background-image: #f4f4f4;
+>>>>>>> b93968cb3adab69f069d888178a04e05ec8dbda1
   }
   
   h1 {
     color: #333;
+<<<<<<< HEAD
   }
+=======
+    display: inline-block;
+    transition: transform 0.5s ease;
+  }
+
+  h1:hover {
+    transform: rotate(360deg);
+  }
+  
+  #linkX {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+  }  
+>>>>>>> b93968cb3adab69f069d888178a04e05ec8dbda1
   
   #game {
     display: grid;
@@ -63,6 +83,7 @@ body {
     justify-content: center;
     gap: 20px;
   }
+<<<<<<< HEAD
   
 
   #symbol-choice {
@@ -147,3 +168,6 @@ body {
     background-color: #0056b3;
   }
     
+=======
+  
+>>>>>>> b93968cb3adab69f069d888178a04e05ec8dbda1
