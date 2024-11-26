@@ -16,6 +16,7 @@ h1 {
   grid-gap: 5px;
   justify-content: center;
   margin: 20px auto;
+  position: relative;
 }
 
 .cell {
@@ -146,4 +147,11 @@ h1 {
 #reset:hover {
   background-color: #0056b3;
 }
-  
+#winning-line {
+  position: relative;
+  height: 5px;
+  background-color: black;
+  transform-origin: center;
+  z-index: 10;
+  display: none;
+}

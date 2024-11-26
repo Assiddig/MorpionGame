@@ -7,6 +7,7 @@ const scoreOText = document.getElementById('scoreO');
 const symbolChoice = document.getElementById('symbol-choice');
 const xSymbolButton = document.getElementById('x-symbol');
 const oSymbolButton = document.getElementById('o-symbol');
+const winningLine = document.getElementById('winning-line');
 
 // ==== Variables globales ====
 let currentPlayer = 'X';
@@ -41,6 +42,7 @@ function checkWinner() {
       // Mise à jour du score
       updateScore();
       highlightWinningCells(combo);
+      drawWinningLine(combo);
       return;
     }
   }
@@ -96,6 +98,27 @@ function handleCellClick(event) {
   }
 }
 
+function drawWinningLine(combo) {
+  const firstCell = cells[combo[0]];
+  const lastCell = cells[combo[2]];
+
+  const firstCellRect = firstCell.getBoundingClientRect();
+  const lastCellRect = lastCell.getBoundingClientRect();
+  const gameRect = document.getElementById('game').getBoundingClientRect();
+
+  const startX = firstCellRect.left + firstCellRect.width / 2 - gameRect.left;
+  const startY = firstCellRect.top + firstCellRect.height / 2 - gameRect.top;
+  const endX = lastCellRect.left + lastCellRect.width / 2 - gameRect.left;
+  const endY = lastCellRect.top + lastCellRect.height / 2 - gameRect.top;
+
+  const length = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
+  const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+
+  winningLine.style.width = `${length}px`;
+  winningLine.style.transform = `translate(${startX}px, ${startY}px) rotate(${angle}deg)`;
+  winningLine.style.display = 'block';
+}
+
 /**
  * Réinitialise le jeu
  */
@@ -108,6 +131,7 @@ function resetGame() {
     cell.textContent = '';
     cell.classList.remove('taken', 'winning-cell');
   });
+  hideWinningLine();
 }
 
 /**
@@ -130,6 +154,10 @@ function highlightWinningCells(combo) {
   combo.forEach(index => {
     cells[index].classList.add('winning-cell');
   });
+}
+
+function hideWinningLine() {
+  winningLine.style.display = 'none';
 }
 
 // ==== Ajout des événements ====
