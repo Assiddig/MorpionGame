@@ -94,7 +94,7 @@ h1 {
 #winning-line {
   position: absolute;
   height: 5px;
-  background-color: #4caf50;
+  background-color: #042205;
   transform-origin: left center;
   z-index: 10;
   display: none;
