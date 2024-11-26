@@ -65,12 +65,12 @@ h1 {
   gap: 20px;
 }
 
-
 #symbol-choice {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
+
 #symbol-choice button {
   padding: 10px 20px;
   margin: 5px;
@@ -91,67 +91,23 @@ h1 {
   }
 }
 
-#board {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.cell {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  background-color: #f4f4f4;
-  border: 1px solid #ddd;
-  cursor: pointer;
+#winning-line {
+  position: absolute;
+  height: 5px;
+  background-color: #4caf50;
+  transform-origin: left center;
+  z-index: 10;
+  display: none;
 }
 
 @media (max-width: 600px) {
-  #board {
-    max-width: 200px;
+  #game {
+    grid-template-columns: repeat(3, 70px);
+    grid-gap: 5px;
   }
   .cell {
     width: 70px;
     height: 70px;
     font-size: 1.5rem;
   }
-}
-.winning-cell {
-  background-color: #4caf50;
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-}
-
-#reset {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-#reset:hover {
-  background-color: #0056b3;
-}
-#winning-line {
-  position: relative;
-  height: 5px;
-  background-color: black;
-  transform-origin: center;
-  z-index: 10;
-  display: none;
 }

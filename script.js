@@ -29,9 +29,6 @@ const winningCombinations = [
 
 // ==== Fonctions principales ====
 
-/**
- * Vérifie si un joueur a gagné ou si la partie est nulle
- */
 function checkWinner() {
   for (const combo of winningCombinations) {
     const [a, b, c] = combo;
@@ -39,10 +36,10 @@ function checkWinner() {
       gameActive = false;
       statusText.textContent = `Le joueur ${currentPlayer} a gagné !`;
 
-      // Mise à jour du score
       updateScore();
       highlightWinningCells(combo);
       drawWinningLine(combo);
+
       return;
     }
   }
@@ -52,35 +49,25 @@ function checkWinner() {
   }
 }
 
-// ==== Choix du symbole initial ====
 function chooseSymbol() {
-  // Quand le joueur choisit "X"
   xSymbolButton.addEventListener('click', () => {
     currentPlayer = 'X';
     startGame();
   });
 
-  // Quand le joueur choisit "O"
   oSymbolButton.addEventListener('click', () => {
     currentPlayer = 'O';
     startGame();
   });
 }
 
-/**
- * Fonction pour démarrer le jeu après le choix du symbole
- */
 function startGame() {
-  symbolChoice.style.display = 'none'; // Cache les boutons de choix
+  symbolChoice.style.display = 'none';
   statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
 }
 
-// ==== Initialisation ====
 chooseSymbol();
 
-/**
- * Gère le clic sur une cellule
- */
 function handleCellClick(event) {
   const cell = event.target;
   const index = cell.getAttribute('data-index');
@@ -119,9 +106,6 @@ function drawWinningLine(combo) {
   winningLine.style.display = 'block';
 }
 
-/**
- * Réinitialise le jeu
- */
 function resetGame() {
   board = ['', '', '', '', '', '', '', '', ''];
   gameActive = true;
@@ -129,14 +113,11 @@ function resetGame() {
   statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
   cells.forEach(cell => {
     cell.textContent = '';
-    cell.classList.remove('taken', 'winning-cell');
+    cell.classList.remove('winning-cell');
   });
   hideWinningLine();
 }
 
-/**
- * Met à jour le score du joueur gagnant
- */
 function updateScore() {
   if (currentPlayer === 'X') {
     scoreX++;
@@ -147,9 +128,6 @@ function updateScore() {
   }
 }
 
-/**
- * Met en surbrillance les cellules de la combinaison gagnante
- */
 function highlightWinningCells(combo) {
   combo.forEach(index => {
     cells[index].classList.add('winning-cell');
@@ -160,9 +138,5 @@ function hideWinningLine() {
   winningLine.style.display = 'none';
 }
 
-// ==== Ajout des événements ====
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 resetButton.addEventListener('click', resetGame);
-
-// ==== Initialisation ====
-statusText.textContent = `C'est au tour du joueur ${currentPlayer}`;
